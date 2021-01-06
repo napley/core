@@ -118,7 +118,7 @@ class OrderDirective
                 // again: lower breaks postgresql jsonb compatibility, first cast as txt
                 $query
                     ->getQueryBuilder()
-                    ->addOrderBy('lower(CAST(' . $translationsAlias . '.value as TEXT))', $direction);
+                    ->addOrderBy('lower(CAST(' . $translationsAlias . '.value as CHAR))', $direction);
             }
             $query->incrementIndex();
         } else {

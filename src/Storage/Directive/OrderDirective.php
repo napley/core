@@ -120,7 +120,7 @@ class OrderDirective
                 // and https://github.com/bolt/core/issues/2241
                 $query
                     ->getQueryBuilder()
-                    ->addOrderBy('lower(CAST(' . $translationsAlias . '.value as TEXT))', $direction);
+                    ->addOrderBy('lower(CAST(' . $translationsAlias . '.value as CHAR))', $direction);
             }
             $query->incrementIndex();
         } else {

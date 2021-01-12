@@ -36,7 +36,7 @@ class JsonHelper
             $resultSlug = $slug;
         } else {
             $resultWhere = $where;
-            $resultSlug = $slug === '%true%' || $slug === '%false%' ? $slug : Json::json_encode([$slug]);
+            $resultSlug = Json::json_encode([$slug]);
         }
 
         if ($where === null) {

@@ -19,6 +19,7 @@ jobs:
                     # test the lowest version, to make sure checks pass on it
                     php-version: ${{ matrix.php-version }}
                     coverage: none
+            - run: sudo apt update
             -   name: Install dependencies
                 run: |
                     sudo composer self-update -q

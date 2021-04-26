@@ -164,18 +164,6 @@ class Canonical
 
     public function generateLink(?string $route, ?array $params, $canonical = false): ?string
     {
-        if (isset($params['_locale']) && $params['_locale'] === $this->defaultLocale) {
-            unset($params['_locale']);
-            $routeWithoutLocale = str_replace('_locale', '', $route);
-
-            // If a route without the locale exists, use that. e.g. record_locale -> record
-            try {
-                $this->generateLink($routeWithoutLocale, $params);
-                $route = $routeWithoutLocale;
-            } catch (RouteNotFoundException $e) {
-            }
-        }
-
         try {
             return $this->urlGenerator->generate(
                 $route,

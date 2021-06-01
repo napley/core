@@ -7,6 +7,7 @@ namespace Bolt\Twig;
 use Bolt\Entity\Content;
 use Bolt\Utils\ContentHelper;
 use Carbon\Carbon;
+use Iterator;
 use Pagerfanta\Pagerfanta;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -80,6 +81,9 @@ final class ArrayExtension extends AbstractExtension
     {
         if ($array instanceof Pagerfanta) {
             $array = (array) $array->getCurrentPageResults();
+        } elseif ($array instanceof Iterator) {
+            // Special edge-case for "|filter. See #2601
+            $array = iterator_to_array($array);
         } elseif (! is_array($array) && is_iterable($array)) {
             $array = (array) $array;
         }

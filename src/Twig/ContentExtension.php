@@ -188,7 +188,7 @@ class ContentExtension extends AbstractExtension
         return '(untitled)';
     }
 
-    public function getTitle(?Content $content, string $locale = '', int $length = 120): string
+    public function getTitle($content, string $locale = '', int $length = 120): string
     {
         if (! $content instanceof Content) {
             return '<mark>No content given</mark>';

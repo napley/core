@@ -33,6 +33,7 @@ class ContentSaveSubscriber implements EventSubscriberInterface
             'content_id' => $event->getContent()->getId(),
             'content_type' => $event->getContent()->getContentType(),
             'title' => $event->getContent()->getExtras()['title'],
+            'details' => json_encode($event->getContent()->toArray()),
         ];
         $this->logger->info('Saved content "{title}" ({content_type} № {content_id})', $context);
 

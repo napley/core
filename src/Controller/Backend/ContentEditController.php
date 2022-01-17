@@ -18,6 +18,7 @@ use Bolt\Entity\User;
 use Bolt\Enum\Statuses;
 use Bolt\Event\ContentEvent;
 use Bolt\Event\Listener\ContentFillListener;
+use Bolt\Event\PostEvent;
 use Bolt\Repository\ContentRepository;
 use Bolt\Repository\FieldRepository;
 use Bolt\Repository\MediaRepository;
@@ -267,6 +268,10 @@ class ContentEditController extends TwigAwareController implements BackendZoneIn
     private function contentFromPost(?Content $content): Content
     {
         $formData = $this->request->request->all();
+
+        $event = new PostEvent($formData);
+        $this->dispatcher->dispatch($event, PostEvent::POST_DATA);
+
         $locale = $this->getPostedLocale($formData) ?: $content->getDefaultLocale();
 
         /** @var User $user */

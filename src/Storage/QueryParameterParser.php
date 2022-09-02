@@ -275,6 +275,10 @@ class QueryParameterParser
         }
 
         $val = $this->parseValue((string) $value);
+        // @todo: Can this be refactored to avoid ugly override when $value is bool?
+        if (is_bool($value)) {
+            $val['value'] = $value;
+        }
         $placeholder = $key . '_1';
         $exprMethod = $val['operator'];
 
